@@ -2,17 +2,52 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+// class MyError extends Error {
+//   toString(){
+//     return "A SUPER bad eror occurred: " + this.message
+//   }
+// }
+
+
+
 class App extends Component {
+  state = {
+    jsonString: `{"name": "eric"}`,
+    fieldToGrab: 'name',
+    message: '',
+  }
+
+  doNaughtyThing = () => {
+    throw new Error('something bad happened')
+  }
+  
+
+  getFieldValueFromJSON = () => {
+    try{
+          const jsonObject = JSON.parse(this.state.jsonString)
+          this.setState({ message: "The value is: " + jsonObject[this.state.fieldToGrab] })
+    // this.doNaughtyThing()
+    } catch(err) {
+      console.log('---------err',err);
+      this.setState({ message: "Error: " + err})
+     
+  }finally{
+    console.log('finally')
+  } }
   render() {
+    const { message,jsonString, fieldToGrab} = this.state
+    
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <h1>Advanced JavaScript</h1>
+        <div>
+          <div>JSON: <textarea value = {jsonString} cols="50" rows="5" onChange={e => this.setState({ jsonString: e.target.value })} /></div>
+          <div>
+            Field to grab: <input value={fieldToGrab} onChange={e => this.setState({ fieldToGrab: e.target.value })} />
+            <button onClick={this.getFieldValueFromJSON}>Get field value</button>
+          </div>
+        </div>
+        <div>{message}</div>
       </div>
     );
   }
