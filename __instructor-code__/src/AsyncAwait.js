@@ -10,7 +10,7 @@ export default class AsyncAwait extends Component {
   async componentDidMount() {
     // axios.get('https://ancient-gods-api.now.sh/api/gods', {
     //   headers: {
-    //     apikey: 'tylercollier'
+    //     apikey: 'ericrivera'
     //   }
     // }).then(response => {
     //   this.setState({ gods: response.data })
@@ -18,7 +18,7 @@ export default class AsyncAwait extends Component {
     try {
       const response = await axios.get('https://google.com/api/gods2', {
         headers: {
-          apikey: 'tylercollier'
+          apikey: 'ericrivera'
         }
       })
       this.setState({ gods: response.data })
