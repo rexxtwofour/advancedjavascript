@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import AsyncAwait from './AsyncAwait';
 // class MyError extends Error {
 //   toString(){
 //     return "A SUPER bad eror occurred: " + this.message
@@ -17,9 +17,9 @@ class App extends Component {
     message: '',
   }
 
-  doNaughtyThing = () => {
-    throw new Error('something bad happened')
-  }
+  // doNaughtyThing = () => {
+  //   throw new Error('something bad happened')
+  // }
   
 
   getFieldValueFromJSON = () => {
@@ -39,6 +39,7 @@ class App extends Component {
     
     return (
       <div>
+        <AsyncAwait/>
         <h1>Advanced JavaScript</h1>
         <div>
           <div>JSON: <textarea value = {jsonString} cols="50" rows="5" onChange={e => this.setState({ jsonString: e.target.value })} /></div>
